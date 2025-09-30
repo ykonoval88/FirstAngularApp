@@ -9,13 +9,14 @@ import { User } from './user.model';
 })
 export class UserComponent {
   @Input({ required: true }) user!: User;
-  @Output() selected = new EventEmitter<string>();
+  @Input({ required: true }) selected!: Boolean;
+  @Output() select = new EventEmitter<string>();
 
   get imagePath() {
     return 'assets/users/' + this.user.avatar;
   }
 
   onSelectUser() {
-    this.selected.emit(this.user.id);
+    this.select.emit(this.user.id);
   }
 }
